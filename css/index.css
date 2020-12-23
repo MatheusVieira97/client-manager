@@ -1,0 +1,68 @@
+@import url("./cadastro.css");
+@import url("./sobre.css");
+@import url("./header.css");
+@import url("./listar.css");
+@import url("./pesquisar.css");
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-size: 16px;
+  color: var(--fontColor);
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+     /*Background Color Gray*/
+     --BgColor: #e4e4e4;
+ 
+     /*Card Background Color*/
+     --CardColor: #4070F4;
+
+     /*Container Shadow*/
+     --Shadow: #8d8d8d;
+ 
+     /*Font color*/
+     --fontColor: #0E2431;
+}
+
+.abas > nav > a:focus {
+  background: white;
+}
+
+.abas > div {
+  display: none;
+}
+
+div.abas div:target {
+  display: flex;
+}
+
+button {
+  height: 3rem;
+  border-radius: 5px;
+  border-style: none;
+  margin: 1rem 1rem 1rem;
+  transition-duration: 0.8s;
+  outline: 0;
+  box-shadow: 0px 0px 5px 0px var(--Shadow);
+}
+
+button:hover {
+  background-color: var(--CardColor);
+}
+
+li {
+  list-style: none;
+}
+
+@media only screen and (min-width: 1920px) {
+  * {
+    font-size: 1.1em;
+  }
+
+  button {
+    min-width: 400px;
+  }
+}

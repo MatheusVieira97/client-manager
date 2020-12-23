@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerenciador de clientes</title>
+  <link rel="stylesheet" href="./css/index.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <p>Helpper</p>
+    <nav>
+      <ul>
+        <li>Clientes</li>
+        <li>Sobre</li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Clientes</h1>
+  <div class="abas">
+    <nav>
+      <a href="#cadastrar">Cadastrar</a>
+      <a href="#listar" onclick="listar();">Listar</a>
+      <a href="#pesquisar">Pesquisar</a>
+    </nav>
+    <div class="cadastrar" id="cadastrar">
+      <form onsubmit="validar();">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Insira o nome" required="required" name="nome"/>
+ 
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="email@domain.com" required="required" name="email" />
+        
+        <label for="id">CPF/CNPJ</label>
+        <input onblur="formatarId(this);" type="text" id="id" placeholder="Insira o CPF ou CNPJ" required="required" name="id" minlength="9"/>
+        
+        <label for="fone">Fone</label>
+        <input onblur="formatarTel(this);" type="tel" id="fone" placeholder="(00) 0000-0000" name="fone"/>
+       
+        <label for="cep">CEP</label>
+        <input onblur="getCep();" type="text" id="cep" placeholder="Informe o CEP" required="required" name="cep"/>
+       
+        <label for="logradouro">Logradouro</label>
+        <input type="text" id="logradouro" placeholder="Insira a rua" required="required" name="logradouro"/>
+ 
+        <label for="numero">Numero</label>
+        <input type="text" id="numero" placeholder="Insira o numero" required="required" name="numero"/>
+  
+        <label for="bairro">Bairro</label>
+        <input type="text" id="bairro" placeholder="Insira o bairro" required="required" name="bairro"/>
+      
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" placeholder="Insira a cidade" required="required" name="cidade"/>
+  
+        <label for="estado">Estado</label>
+        <select name="estado" id="estado" required="required"> 
+          <option value="estado">Selecione o Estado</option> 
+          <option value="AC">Acre</option> 
+          <option value="AL">Alagoas</option> 
+          <option value="AM">Amazonas</option> 
+          <option value="AP">Amapá</option> 
+          <option value="BA">Bahia</option> 
+          <option value="CE">Ceará</option> 
+          <option value="DF">Distrito Federal</option> 
+          <option value="ES">Espírito Santo</option> 
+          <option value="GO">Goiás</option> 
+          <option value="MA">Maranhão</option> 
+          <option value="MT">Mato Grosso</option> 
+          <option value="MS">Mato Grosso do Sul</option> 
+          <option value="MG">Minas Gerais</option> 
+          <option value="PA">Pará</option> 
+          <option value="PB">Paraíba</option> 
+          <option value="PR">Paraná</option> 
+          <option value="PE">Pernambuco</option> 
+          <option value="PI">Piauí</option> 
+          <option value="RJ">Rio de Janeiro</option> 
+          <option value="RN">Rio Grande do Norte</option> 
+          <option value="RO">Rondônia</option> 
+          <option value="RS">Rio Grande do Sul</option> 
+          <option value="RR">Roraima</option> 
+          <option value="SC">Santa Catarina</option> 
+          <option value="SE">Sergipe</option> 
+          <option value="SP">São Paulo</option> 
+          <option value="TO">Tocantins</option> 
+      </select>
+        <button type="submit" class="btnCadastro">Cadastrar</button>
+      </form>
+    </div>
+    <div id="listar" class="listar">
+    </div>
+    <div id="pesquisar" class="pesquisar">
+      <input onblur="formatarId(this);" type="text" id="idPesquisa" placeholder="Insira o CPF ou CNPJ" required="required" name="idPesquisa"/>
+      <button class="btnPesquisar" onclick="pesquisar();">Pesquisar</button>
+      <div id="cliPesquisa"></div>
+    </div>
+  </div>
+  <script src="./scripts/app.js"></script>
+</body>
+</html>
