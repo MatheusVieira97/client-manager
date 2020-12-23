@@ -5,11 +5,11 @@ function menuAbas(aba) {
   let cadastrar = document.getElementById('cadastrar');
   let listar = document.getElementById('listar');
   let pesquisar = document.getElementById('pesquisar');
-  if(aba == 'Cadastrar'){
+  if (aba == 'Cadastrar') {
     cadastrar.style.display = "flex";
     listar.style.display = "none";
     pesquisar.style.display = "none";
-  } else if(aba == 'Listar') {
+  } else if (aba == 'Listar') {
     cadastrar.style.display = "none";
     listar.style.display = "flex";
     pesquisar.style.display = "none";
@@ -18,7 +18,7 @@ function menuAbas(aba) {
     listar.style.display = "none";
     pesquisar.style.display = "flex";
   }
- }
+}
 
 //Funcionalidades
 let clientes = [];
@@ -67,7 +67,7 @@ function listar() {
 
   clientes = JSON.parse(localStorage.getItem("clientes"));
 
-  if(clientes.length == 0) {
+  if (clientes.length == 0) {
     let divCliente = document.createElement("div");
     divCliente.classList.add('containerCli');
     const text = `<p>Nenhum cliente cadastrado</p>`;
@@ -137,7 +137,7 @@ function excluir() {
   for (let element of clientes) {
     if (id === element.id) {
       let index = clientes.indexOf(element);
-      clientes.splice(index,1);
+      clientes.splice(index, 1);
       localStorage.setItem("clientes", JSON.stringify(clientes));
       alert("Cliente excluido com sucesso!");
     }
@@ -153,18 +153,6 @@ function formatarId(id) {
     id.value = id.value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3\-\$4");
   } else {
     id.value = id.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "\$1.\$2.\$3\/\$4\-\$5");
-  }
-
-  if(!validaCpfCnpj(id.value)) {
-    alert("CPF/CNPJ inválido " + id.value);
-  }
-
-  clientes = JSON.parse(localStorage.getItem("clientes"));
-  for(let element of clientes) {
-    if(id.value === element.id) {
-      alert("CPF/CNPJ já cadastrado");
-      return;
-    }
   }
 }
 
@@ -207,147 +195,161 @@ function getCep() {
 }
 
 function validar() {
-  let id = document.getElementById('id').value;
+  if (!validaCpfCnpj(id.value)) {
+    alert("CPF/CNPJ inválido " + id.value);
+  }
+
   clientes = JSON.parse(localStorage.getItem("clientes"));
-   //Verifica se o CPF/CNPJ ja está cadastrado
-  for(let element of clientes) {
-    if(id === element.id) {
+  for (let element of clientes) {
+    if (id.value === element.id) {
       alert("CPF/CNPJ já cadastrado");
       return;
     }
   }
-
-  if (validaCpfCnpj(id)) {
-    cadastrar();
-  } else {
-    alert("CPF/CNPJ inválido " + id);
-  }
 }
 
-//Validar CPF e CNPJ baseado no tutorial da DevMedia
-function validaCpfCnpj(id) {
-  if (id.length == 14) {
-    let cpf = id.trim();
-
-    cpf = cpf.replace(/\./g, '');
-    cpf = cpf.replace('-', '');
-    cpf = cpf.split('');
-
-    let v1 = 0;
-    let v2 = 0;
-    let aux = false;
-
-    //Verifica se os digitos são iguais
-    for (let i = 1; cpf.length > i; i++) {
-      if (cpf[i - 1] != cpf[i]) {
-        aux = true;
+  function validarCadastro() {
+    let id = document.getElementById('id').value;
+    clientes = JSON.parse(localStorage.getItem("clientes"));
+    //Verifica se o CPF/CNPJ ja está cadastrado
+    for (let element of clientes) {
+      if (id === element.id) {
+        alert("CPF/CNPJ já cadastrado");
+        return;
       }
     }
 
-    if (aux == false) {
-      return false;
-    }
-
-    //Calculo do primeiro digito verificador
-    for (let i = 0, p = 10; (cpf.length - 2) > i; i++, p--) {
-      v1 += cpf[i] * p;
-    }
-
-    v1 = ((v1 * 10) % 11);
-
-    if (v1 == 10) {
-      v1 = 0;
-    }
-
-    //Verifica se o digito está correto
-    if (v1 != cpf[9]) {
-      return false;
-    }
-
-    //Calculo do segundo digito verificador
-    for (let i = 0, p = 11; (cpf.length - 1) > i; i++, p--) {
-      v2 += cpf[i] * p;
-    }
-
-    v2 = ((v2 * 10) % 11);
-
-    if (v2 == 10) {
-      v2 = 0;
-    }
-
-    //Verifica se o segundo digito esta correto
-    if (v2 != cpf[10]) {
-      return false;
+    if (validaCpfCnpj(id)) {
+      cadastrar();
     } else {
-      return true;
+      alert("CPF/CNPJ inválido " + id);
     }
-  } else if (id.length == 18) {
-    let cnpj = val.trim();
-
-    cnpj = cnpj.replace(/\./g, '');
-    cnpj = cnpj.replace('-', '');
-    cnpj = cnpj.replace('/', '');
-    cnpj = cnpj.split('');
-
-    let v1 = 0;
-    let v2 = 0;
-    let aux = false;
-
-    //Verificar se os digitos são iguais
-    for (let i = 1; cnpj.length > i; i++) {
-      if (cnpj[i - 1] != cnpj[i]) {
-        aux = true;
-      }
-    }
-
-    if (aux == false) {
-      return false;
-    }
-
-    //Calculo do primeiro digito
-    for (let i = 0, p1 = 5, p2 = 13; (cnpj.length - 2) > i; i++, p1--, p2--) {
-      if (p1 >= 2) {
-        v1 += cnpj[i] * p1;
-      } else {
-        v1 += cnpj[i] * p2;
-      }
-    }
-
-    v1 = (v1 % 11);
-
-    if (v1 < 2) {
-      v1 = 0;
-    } else {
-      v1 = (11 - v1);
-    }
-
-    if (v1 != cnpj[12]) {
-      return false;
-    }
-
-    //calculo do segundo digito
-    for (var i = 0, p1 = 6, p2 = 14; (cnpj.length - 1) > i; i++, p1--, p2--) {
-      if (p1 >= 2) {
-        v2 += cnpj[i] * p1;
-      } else {
-        v2 += cnpj[i] * p2;
-      }
-    }
-
-    v2 = (v2 % 11);
-
-    if (v2 < 2) {
-      v2 = 0;
-    } else {
-      v2 = (11 - v2);
-    }
-
-    if (v2 != cnpj[13]) {
-      return false;
-    } else {
-      return true;
-    }
-  } else {
-    return false;
   }
-}
+
+  //Validar CPF e CNPJ baseado no tutorial da DevMedia
+  function validaCpfCnpj(id) {
+    if (id.length == 14) {
+      let cpf = id.trim();
+
+      cpf = cpf.replace(/\./g, '');
+      cpf = cpf.replace('-', '');
+      cpf = cpf.split('');
+
+      let v1 = 0;
+      let v2 = 0;
+      let aux = false;
+
+      //Verifica se os digitos são iguais
+      for (let i = 1; cpf.length > i; i++) {
+        if (cpf[i - 1] != cpf[i]) {
+          aux = true;
+        }
+      }
+
+      if (aux == false) {
+        return false;
+      }
+
+      //Calculo do primeiro digito verificador
+      for (let i = 0, p = 10; (cpf.length - 2) > i; i++, p--) {
+        v1 += cpf[i] * p;
+      }
+
+      v1 = ((v1 * 10) % 11);
+
+      if (v1 == 10) {
+        v1 = 0;
+      }
+
+      //Verifica se o digito está correto
+      if (v1 != cpf[9]) {
+        return false;
+      }
+
+      //Calculo do segundo digito verificador
+      for (let i = 0, p = 11; (cpf.length - 1) > i; i++, p--) {
+        v2 += cpf[i] * p;
+      }
+
+      v2 = ((v2 * 10) % 11);
+
+      if (v2 == 10) {
+        v2 = 0;
+      }
+
+      //Verifica se o segundo digito esta correto
+      if (v2 != cpf[10]) {
+        return false;
+      } else {
+        return true;
+      }
+    } else if (id.length == 18) {
+      let cnpj = val.trim();
+
+      cnpj = cnpj.replace(/\./g, '');
+      cnpj = cnpj.replace('-', '');
+      cnpj = cnpj.replace('/', '');
+      cnpj = cnpj.split('');
+
+      let v1 = 0;
+      let v2 = 0;
+      let aux = false;
+
+      //Verificar se os digitos são iguais
+      for (let i = 1; cnpj.length > i; i++) {
+        if (cnpj[i - 1] != cnpj[i]) {
+          aux = true;
+        }
+      }
+
+      if (aux == false) {
+        return false;
+      }
+
+      //Calculo do primeiro digito
+      for (let i = 0, p1 = 5, p2 = 13; (cnpj.length - 2) > i; i++, p1--, p2--) {
+        if (p1 >= 2) {
+          v1 += cnpj[i] * p1;
+        } else {
+          v1 += cnpj[i] * p2;
+        }
+      }
+
+      v1 = (v1 % 11);
+
+      if (v1 < 2) {
+        v1 = 0;
+      } else {
+        v1 = (11 - v1);
+      }
+
+      if (v1 != cnpj[12]) {
+        return false;
+      }
+
+      //calculo do segundo digito
+      for (var i = 0, p1 = 6, p2 = 14; (cnpj.length - 1) > i; i++, p1--, p2--) {
+        if (p1 >= 2) {
+          v2 += cnpj[i] * p1;
+        } else {
+          v2 += cnpj[i] * p2;
+        }
+      }
+
+      v2 = (v2 % 11);
+
+      if (v2 < 2) {
+        v2 = 0;
+      } else {
+        v2 = (11 - v2);
+      }
+
+      if (v2 != cnpj[13]) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }

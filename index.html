@@ -21,7 +21,7 @@
       <a onclick="menuAbas('Pesquisar');">Pesquisar</a>
     </nav>
     <div class="cadastrar" id="cadastrar">
-      <form id="form" onsubmit="validar();">
+      <form id="form" onsubmit="validarCadastro();">
         <label for="nome">Nome</label>
         <input type="text" id="nome" placeholder="Insira o nome" required="required" name="nome"/>
  
@@ -29,7 +29,7 @@
         <input type="email" id="email" placeholder="email@domain.com" required="required" name="email" />
         
         <label for="id">CPF/CNPJ</label>
-        <input onblur="formatarId(this);" type="text" id="id" placeholder="Insira o CPF ou CNPJ" required="required" name="id" minlength="9"/>
+        <input onblur="formatarId(this); validar();" type="text" id="id" placeholder="Insira o CPF ou CNPJ" required="required" name="id" minlength="9"/>
         
         <label for="fone">Fone</label>
         <input onblur="formatarTel(this);" type="tel" id="fone" placeholder="(00) 0000-0000" name="fone"/>
