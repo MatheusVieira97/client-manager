@@ -154,6 +154,18 @@ function formatarId(id) {
   } else {
     id.value = id.value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/g, "\$1.\$2.\$3\/\$4\-\$5");
   }
+
+  if(!validaCpfCnpj(id.value)) {
+    alert("CPF/CNPJ inválido " + id.value);
+  }
+
+  clientes = JSON.parse(localStorage.getItem("clientes"));
+  for(let element of clientes) {
+    if(id.value === element.id) {
+      alert("CPF/CNPJ já cadastrado");
+      return;
+    }
+  }
 }
 
 function formatarTel(tel) {
@@ -196,8 +208,8 @@ function getCep() {
 
 function validar() {
   let id = document.getElementById('id').value;
-  //Verifica se o CPF/CNPJ ja está cadastrado
   clientes = JSON.parse(localStorage.getItem("clientes"));
+   //Verifica se o CPF/CNPJ ja está cadastrado
   for(let element of clientes) {
     if(id === element.id) {
       alert("CPF/CNPJ já cadastrado");

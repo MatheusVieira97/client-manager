@@ -11,6 +11,7 @@
   font-size: 1.2em;
   font-weight: 400;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .cadastrar {
@@ -30,7 +31,7 @@ input {
   padding-left: 1rem;
   border-radius: 5px;
   border: 1px solid;
-  font-weight: 600;
+  font-weight: 200;
   outline: 0;
 }
 
