@@ -6,17 +6,13 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: var(--BgColor);
+    background: #111213;
 }
 
-header > nav > ul{
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-}
-
-header > nav > ul > li{
-    margin-left: 10px;
+img {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
 }
 
 h1 {
@@ -26,4 +22,11 @@ h1 {
     font-weight: 600;
 }
 
+
+@media only screen and (min-width: 1920px) {
+    img {
+        width: 200px;
+        height: 100px;
+    }
+}
 

@@ -1,6 +1,28 @@
 'use strict'
 
+//Menu de abas  
+function menuAbas(aba) {
+  let cadastrar = document.getElementById('cadastrar');
+  let listar = document.getElementById('listar');
+  let pesquisar = document.getElementById('pesquisar');
+  if(aba == 'Cadastrar'){
+    cadastrar.style.display = "flex";
+    listar.style.display = "none";
+    pesquisar.style.display = "none";
+  } else if(aba == 'Listar') {
+    cadastrar.style.display = "none";
+    listar.style.display = "flex";
+    pesquisar.style.display = "none";
+  } else {
+    cadastrar.style.display = "none";
+    listar.style.display = "none";
+    pesquisar.style.display = "flex";
+  }
+ }
+
+//Funcionalidades
 let clientes = [];
+
 if (!localStorage.getItem("clientes")) {
   localStorage.setItem("clientes", JSON.stringify(clientes));
 }

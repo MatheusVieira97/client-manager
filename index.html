@@ -12,20 +12,13 @@
 
 <body>
   <header>
-    <p>Helpper</p>
-    <nav>
-      <ul>
-        <li>Clientes</li>
-        <li>Sobre</li>
-      </ul>
-    </nav>
+    <img src="src/helpper-logo.png">
   </header>
-  <h1>Clientes</h1>
   <div class="abas">
     <nav>
-      <a href="#cadastrar">Cadastrar</a>
-      <a href="#listar" onclick="listar();">Listar</a>
-      <a href="#pesquisar">Pesquisar</a>
+      <a onclick="menuAbas('Cadastrar');">Cadastrar</a>
+      <a onclick="listar(); menuAbas('Listar');">Listar</a>
+      <a onclick="menuAbas('Pesquisar');">Pesquisar</a>
     </nav>
     <div class="cadastrar" id="cadastrar">
       <form onsubmit="validar();">

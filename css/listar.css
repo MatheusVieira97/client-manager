@@ -1,5 +1,9 @@
 @import url('./index.css');
 
+.listar {
+    display: flex;
+    flex-direction: column;
+}
 .containerCli {
     background: var(--CardColor);
     height: auto;

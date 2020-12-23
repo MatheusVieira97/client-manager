@@ -35,9 +35,6 @@
   display: none;
 }
 
-div.abas div:target {
-  display: flex;
-}
 
 button {
   height: 3rem;
