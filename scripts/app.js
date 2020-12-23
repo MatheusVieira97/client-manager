@@ -67,6 +67,14 @@ function listar() {
 
   clientes = JSON.parse(localStorage.getItem("clientes"));
 
+  if(clientes.length == 0) {
+    let divCliente = document.createElement("div");
+    divCliente.classList.add('containerCli');
+    const text = `<p>Nenhum cliente cadastrado</p>`;
+    divCliente.innerHTML = text;
+    lista.append(divCliente);
+  }
+
   for (let element of clientes) {
     let divCliente = document.createElement("div");
     divCliente.classList.add('containerCli');
