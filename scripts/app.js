@@ -162,7 +162,7 @@ function formatarTel(tel) {
   tel.value = tel.value.replace(/(\d)(\d{4})$/, "$1-$2");
 }
 
-//API utilizada - ViaCEP
+//API utilizada - ViaCEP -Update
 function getCep() {
   let cep = document.getElementById('cep').value;
   if (cep.length == 8) {
