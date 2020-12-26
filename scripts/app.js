@@ -165,7 +165,7 @@ function formatarTel(tel) {
 //API utilizada - ViaCEP
 function getCep() {
   let cep = document.getElementById('cep').value;
-  if (cep.length == 9) {
+  if (cep.length == 8) {
     const url = `https://viacep.com.br/ws/${cep}/json/`;
 
     try {
