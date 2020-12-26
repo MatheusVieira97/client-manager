@@ -13,5 +13,3 @@
 - [x] Listagem de clientes
 - [x] Pesquisa de clientes
 - [x] Exclusão de clientes
-
-[⬆ Voltar ao topo](#nome-do-projeto)<br>
